@@ -83,6 +83,10 @@ type Life {
     """
     birthday: Date!
     """
+    description
+    """
+    description: String!
+    """
     first name
     """
     firstName: String!
@@ -98,6 +102,10 @@ type Life {
     last name
     """
     lastName: String!
+    """
+    title
+    """
+    title: String!
 }
 
 type MessageNotice {

@@ -23,6 +23,16 @@ type Life {
     birthDay
     """
     birthday: Date!
+    
+    """
+    title
+    """
+    title: String!
+
+    """
+    description
+    """
+    description: String!
 
     """
     hobbies

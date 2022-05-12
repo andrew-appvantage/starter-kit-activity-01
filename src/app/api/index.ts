@@ -77,6 +77,8 @@ export type Life = {
     _id: Scalars['ObjectID'];
     /** birthDay */
     birthday: Scalars['Date'];
+    /** description */
+    description: Scalars['String'];
     /** first name */
     firstName: Scalars['String'];
     /** full name */
@@ -85,6 +87,8 @@ export type Life = {
     hobbies: Array<Scalars['String']>;
     /** last name */
     lastName: Scalars['String'];
+    /** title */
+    title: Scalars['String'];
 };
 
 export type MessageNotice = {
@@ -383,6 +387,40 @@ export type RetrieveLinkQueryVariables = Exact<{
 export type RetrieveLinkQuery = {
     __typename?: 'Query';
     retrieveLink?: { __typename: 'ResetPasswordLink'; token: string } | null;
+};
+
+export type GetListOfLifeQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetListOfLifeQuery = {
+    __typename?: 'Query';
+    listLives?: Array<{
+        __typename?: 'Life';
+        _id: string;
+        birthday: any;
+        firstName: string;
+        fullName: string;
+        hobbies: Array<string>;
+        lastName: string;
+    } | null> | null;
+};
+
+export type GetLifeQueryVariables = Exact<{
+    id: Scalars['ObjectID'];
+}>;
+
+export type GetLifeQuery = {
+    __typename?: 'Query';
+    getLife?: {
+        __typename?: 'Life';
+        _id: string;
+        birthday: any;
+        description: string;
+        firstName: string;
+        fullName: string;
+        hobbies: Array<string>;
+        lastName: string;
+        title: string;
+    } | null;
 };
 
 type SystemMessageData_MessageNotice_Fragment = { __typename: 'MessageNotice'; date: string | Date; message: string };
@@ -925,6 +963,148 @@ export function useRetrieveLinkLazyQuery(
 export type RetrieveLinkQueryHookResult = ReturnType<typeof useRetrieveLinkQuery>;
 export type RetrieveLinkLazyQueryHookResult = ReturnType<typeof useRetrieveLinkLazyQuery>;
 export type RetrieveLinkQueryResult = Apollo.QueryResult<RetrieveLinkQuery, RetrieveLinkQueryVariables>;
+export const GetListOfLifeDocument = /* #__PURE__ */ {
+    kind: 'Document',
+    definitions: [
+        {
+            kind: 'OperationDefinition',
+            operation: 'query',
+            name: { kind: 'Name', value: 'getListOfLife' },
+            selectionSet: {
+                kind: 'SelectionSet',
+                selections: [
+                    {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'listLives' },
+                        selectionSet: {
+                            kind: 'SelectionSet',
+                            selections: [
+                                { kind: 'Field', name: { kind: 'Name', value: '_id' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'birthday' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'fullName' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'hobbies' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'lastName' } },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
+    ],
+} as unknown as DocumentNode;
+
+/**
+ * __useGetListOfLifeQuery__
+ *
+ * To run a query within a React component, call `useGetListOfLifeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetListOfLifeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetListOfLifeQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetListOfLifeQuery(
+    baseOptions?: Apollo.QueryHookOptions<GetListOfLifeQuery, GetListOfLifeQueryVariables>
+) {
+    const options = { ...defaultOptions, ...baseOptions };
+
+    return Apollo.useQuery<GetListOfLifeQuery, GetListOfLifeQueryVariables>(GetListOfLifeDocument, options);
+}
+export function useGetListOfLifeLazyQuery(
+    baseOptions?: Apollo.LazyQueryHookOptions<GetListOfLifeQuery, GetListOfLifeQueryVariables>
+) {
+    const options = { ...defaultOptions, ...baseOptions };
+
+    return Apollo.useLazyQuery<GetListOfLifeQuery, GetListOfLifeQueryVariables>(GetListOfLifeDocument, options);
+}
+export type GetListOfLifeQueryHookResult = ReturnType<typeof useGetListOfLifeQuery>;
+export type GetListOfLifeLazyQueryHookResult = ReturnType<typeof useGetListOfLifeLazyQuery>;
+export type GetListOfLifeQueryResult = Apollo.QueryResult<GetListOfLifeQuery, GetListOfLifeQueryVariables>;
+export const GetLifeDocument = /* #__PURE__ */ {
+    kind: 'Document',
+    definitions: [
+        {
+            kind: 'OperationDefinition',
+            operation: 'query',
+            name: { kind: 'Name', value: 'getLife' },
+            variableDefinitions: [
+                {
+                    kind: 'VariableDefinition',
+                    variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
+                    type: {
+                        kind: 'NonNullType',
+                        type: { kind: 'NamedType', name: { kind: 'Name', value: 'ObjectID' } },
+                    },
+                },
+            ],
+            selectionSet: {
+                kind: 'SelectionSet',
+                selections: [
+                    {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'getLife' },
+                        arguments: [
+                            {
+                                kind: 'Argument',
+                                name: { kind: 'Name', value: '_id' },
+                                value: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
+                            },
+                        ],
+                        selectionSet: {
+                            kind: 'SelectionSet',
+                            selections: [
+                                { kind: 'Field', name: { kind: 'Name', value: '_id' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'birthday' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'fullName' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'hobbies' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'lastName' } },
+                                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
+    ],
+} as unknown as DocumentNode;
+
+/**
+ * __useGetLifeQuery__
+ *
+ * To run a query within a React component, call `useGetLifeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLifeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLifeQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetLifeQuery(baseOptions: Apollo.QueryHookOptions<GetLifeQuery, GetLifeQueryVariables>) {
+    const options = { ...defaultOptions, ...baseOptions };
+
+    return Apollo.useQuery<GetLifeQuery, GetLifeQueryVariables>(GetLifeDocument, options);
+}
+export function useGetLifeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLifeQuery, GetLifeQueryVariables>) {
+    const options = { ...defaultOptions, ...baseOptions };
+
+    return Apollo.useLazyQuery<GetLifeQuery, GetLifeQueryVariables>(GetLifeDocument, options);
+}
+export type GetLifeQueryHookResult = ReturnType<typeof useGetLifeQuery>;
+export type GetLifeLazyQueryHookResult = ReturnType<typeof useGetLifeLazyQuery>;
+export type GetLifeQueryResult = Apollo.QueryResult<GetLifeQuery, GetLifeQueryVariables>;
 export const ListenOnSystemDocument = /* #__PURE__ */ {
     kind: 'Document',
     definitions: [

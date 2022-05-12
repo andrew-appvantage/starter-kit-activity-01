@@ -1,0 +1,23 @@
+query getListOfLife {
+    listLives {
+        _id
+        birthday
+        firstName
+        fullName
+        hobbies
+        lastName
+    }
+}
+
+query getLife($id: ObjectID!) {
+    getLife(_id: $id) {
+        _id
+        birthday
+        description
+        firstName
+        fullName
+        hobbies
+        lastName
+        title
+    }
+}

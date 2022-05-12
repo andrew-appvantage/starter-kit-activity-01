@@ -78,6 +78,8 @@ export type GraphQLLife = {
     _id: Scalars['ObjectID'];
     /** birthDay */
     birthday: Scalars['Date'];
+    /** description */
+    description: Scalars['String'];
     /** first name */
     firstName: Scalars['String'];
     /** full name */
@@ -86,6 +88,8 @@ export type GraphQLLife = {
     hobbies: Array<Scalars['String']>;
     /** last name */
     lastName: Scalars['String'];
+    /** title */
+    title: Scalars['String'];
 };
 
 export type GraphQLMessageNotice = {
@@ -591,10 +595,12 @@ export type GraphQLLifeResolvers<
 > = {
     _id?: Resolver<GraphQLResolversTypes['ObjectID'], ParentType, ContextType>;
     birthday?: Resolver<GraphQLResolversTypes['Date'], ParentType, ContextType>;
+    description?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
     firstName?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
     fullName?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
     hobbies?: Resolver<Array<GraphQLResolversTypes['String']>, ParentType, ContextType>;
     lastName?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
+    title?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
     __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
