@@ -5,6 +5,11 @@ type Mutation {
     createAccount(username: String!, password: String!, email: String!): User!
 
     """
+    Create a new life 
+    """
+    createLife(firstName: String!, lastName: String!, title: String!, description: String!, birthday: Date!, hobbies: [String!]!): Life!
+
+    """
     Update the display name for the logged in user
 
     Authentication is required

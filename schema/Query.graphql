@@ -3,6 +3,16 @@ type Query {
     Fetch user document for the logged in user, returns null otherwise for anonymous
     """
     currentUser: User
+    
+    """
+    Fetch a life document
+    """
+    getLife(_id: ObjectID!): Life
+
+    """
+    Fetch a life of lives
+    """
+    listLives: [Life]
 
     """
     List users

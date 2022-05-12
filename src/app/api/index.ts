@@ -15,6 +15,7 @@ export type Scalars = {
     Boolean: boolean;
     Int: number;
     Float: number;
+    Date: any;
     DateTime: string | Date;
     JSONObject: any;
     ObjectID: string;
@@ -70,6 +71,22 @@ export type AuthenticatorSetup = {
 
 export type ExternalLink = ResetPasswordLink;
 
+export type Life = {
+    __typename?: 'Life';
+    /** Life object ID */
+    _id: Scalars['ObjectID'];
+    /** birthDay */
+    birthday: Scalars['Date'];
+    /** first name */
+    firstName: Scalars['String'];
+    /** full name */
+    fullName: Scalars['String'];
+    /** hobbies */
+    hobbies: Array<Scalars['String']>;
+    /** last name */
+    lastName: Scalars['String'];
+};
+
 export type MessageNotice = {
     __typename?: 'MessageNotice';
     date: Scalars['DateTime'];
@@ -94,6 +111,8 @@ export type Mutation = {
     completeWebPublicKeyCredentialRegistration: Scalars['Boolean'];
     /** Create a new account/user */
     createAccount: User;
+    /** Create a new life  */
+    createLife: Life;
     /** Disable 2FA / Authenticator for the signed user */
     disableAuthenticator: User;
     /** Enable 2FA / Authenticator for the signed user */
@@ -164,6 +183,15 @@ export type MutationCreateAccountArgs = {
     username: Scalars['String'];
 };
 
+export type MutationCreateLifeArgs = {
+    birthday: Scalars['Date'];
+    description: Scalars['String'];
+    firstName: Scalars['String'];
+    hobbies: Array<Scalars['String']>;
+    lastName: Scalars['String'];
+    title: Scalars['String'];
+};
+
 export type MutationEnableAuthenticatorArgs = {
     secret: Scalars['String'];
     token: Scalars['String'];
@@ -209,8 +237,12 @@ export type Query = {
     generateAuthenticatorChallenge?: Maybe<AuthenticationWithWebPublicKeyCredential>;
     /** Generate authenticator secret and qrcode */
     generateAuthenticatorSetup: AuthenticatorSetup;
+    /** Fetch a life document */
+    getLife?: Maybe<Life>;
     /** Fetch WebAuthn security keys for a username */
     getWebauthnKeys: Array<Scalars['String']>;
+    /** Fetch a life of lives */
+    listLives?: Maybe<Array<Maybe<Life>>>;
     /** List users */
     listUsers: PaginatedUsers;
     /** Retrieve a link information */
@@ -219,6 +251,10 @@ export type Query = {
 
 export type QueryGenerateAuthenticatorChallengeArgs = {
     username: Scalars['String'];
+};
+
+export type QueryGetLifeArgs = {
+    _id: Scalars['ObjectID'];
 };
 
 export type QueryGetWebauthnKeysArgs = {
