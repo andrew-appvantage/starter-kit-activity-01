@@ -1,8 +1,7 @@
-import BasicLayout from '../../../layouts/BasicLayout';
-import { Table, Tag, Space } from 'antd';
-import { useGetListOfLifeLazyQuery } from '../../../api';
-import { useEffect } from 'react';
+import { Table, Tag } from 'antd';
+import { useListLivesQuery } from '../../../api';
 import LoadingElement from '../../../components/LoadingElement';
+import BasicLayout from '../../../layouts/BasicLayout';
 
 const columns = [
     {
@@ -24,6 +23,7 @@ const columns = [
         title: 'Birthday',
         dataIndex: 'birthday',
         key: 'birthday',
+        render: date => <span>{new Date(date).toLocaleDateString()}</span>,
     },
     {
         title: 'Title',
@@ -42,9 +42,10 @@ const columns = [
         render: tags => (
             <>
                 {tags.map((tag, i) => {
-                    let color = i % 2 === 0 ? 'geekblue' : 'green';
+                    const color = i % 2 === 0 ? 'geekblue' : 'green';
+
                     return (
-                        <Tag color={color} key={tag}>
+                        <Tag key={tag} color={color}>
                             {tag.toUpperCase()}
                         </Tag>
                     );
@@ -55,13 +56,11 @@ const columns = [
 ];
 
 const LivesPage = () => {
-    const [fetch, { data, loading }] = useGetListOfLifeLazyQuery();
+    const { data, loading } = useListLivesQuery();
 
-    useEffect(() => {
-        fetch();
-    }, []);
-    
-    if (loading) return <LoadingElement />;
+    if (loading) {
+        return <LoadingElement />;
+    }
 
     return (
         <BasicLayout>

@@ -2,7 +2,7 @@ type Life {
     """
     Life object ID
     """
-    _id: ObjectID!
+    id: ObjectID!
 
     """
     first name
@@ -22,8 +22,8 @@ type Life {
     """
     birthDay
     """
-    birthday: Date!
-    
+    birthday: DateTime!
+
     """
     title
     """
@@ -39,5 +39,3 @@ type Life {
     """
     hobbies: [String!]!
 }
-
-

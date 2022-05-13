@@ -1,17 +1,15 @@
-import { getDatabaseContext, Life } from '../../../database';
+import { getDatabaseContext } from '../../../database';
 import { GraphQLQueryResolvers } from '../definitions';
 
 const query: GraphQLQueryResolvers['listLives'] = async () => {
     const { collections } = await getDatabaseContext();
-    let lists = []
-    try {
-        lists = await collections.lives
-            .find({})
-            .map(life => life)
-            .toArray();
-    } catch (error) {
-        throw error;
-    }
+    let lists = [];
+
+    lists = await collections.lives
+        .find({})
+        .map(life => life)
+        .toArray();
+
     return lists;
 };
 

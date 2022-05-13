@@ -1,27 +1,25 @@
-import { getDatabaseContext, Life } from '../../../database';
 import { ObjectId } from 'mongodb';
+import { getDatabaseContext, Life } from '../../../database';
 import { GraphQLMutationResolvers } from '../definitions';
 
-const mutation: GraphQLMutationResolvers['createLife'] = async (root, { firstName, lastName, title, description, birthday, hobbies }) => {
-    const {collections} = await getDatabaseContext();
-    
+const mutation: GraphQLMutationResolvers['createLife'] = async (
+    root,
+    { createLifeInput: { firstName, lastName, title, description, birthday, hobbies } }
+) => {
+    const { collections } = await getDatabaseContext();
+
     const document: Life = {
         _id: new ObjectId(),
         firstName,
         lastName,
-        fullName: `${firstName} ${lastName}`,
         title,
         description,
         birthday,
         hobbies: [...hobbies],
-    }
-    try {
-        await collections.lives.insertOne(document);
+    };
+    await collections.lives.insertOne(document);
 
-    } catch(error) {
-        throw error;
-    }
-    return document
+    return document;
 };
 
-export default mutation
+export default mutation;

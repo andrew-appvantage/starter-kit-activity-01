@@ -5,9 +5,9 @@ type Mutation {
     createAccount(username: String!, password: String!, email: String!): User!
 
     """
-    Create a new life 
+    Create a new life
     """
-    createLife(firstName: String!, lastName: String!, title: String!, description: String!, birthday: Date!, hobbies: [String!]!): Life!
+    createLife(createLifeInput: CreateLifeInput): Life!
 
     """
     Update the display name for the logged in user
@@ -89,4 +89,13 @@ type Mutation {
     Revoke user session
     """
     revokeUserSession(id: ObjectID!, displayNotice: Boolean): Boolean!
+}
+
+input CreateLifeInput {
+    firstName: String!
+    lastName: String!
+    title: String!
+    description: String!
+    birthday: DateTime!
+    hobbies: [String!]!
 }

@@ -1,15 +1,10 @@
-import { getDatabaseContext, Life } from '../../../database';
+import { getDatabaseContext } from '../../../database';
 import { GraphQLQueryResolvers } from '../definitions';
 
-const query: GraphQLQueryResolvers['getLife'] = async (root, { _id }) => {
+const query: GraphQLQueryResolvers['getLife'] = async (root, { id }) => {
     const { collections } = await getDatabaseContext();
-    let life: Life | null;
-    try {
-        life = await collections.lives.findOne({ _id: _id });
-        if (!life) return null;
-    } catch (error) {
-        throw error;
-    }
+    const life = await collections.lives.findOne({ _id: id });
+
     return life;
 };
 

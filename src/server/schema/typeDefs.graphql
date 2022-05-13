@@ -65,7 +65,14 @@ type AuthenticatorSetup {
     secret: String!
 }
 
-scalar Date
+input CreateLifeInput {
+    birthday: DateTime!
+    description: String!
+    firstName: String!
+    hobbies: [String!]!
+    lastName: String!
+    title: String!
+}
 
 scalar DateTime
 
@@ -75,13 +82,9 @@ scalar JSONObject
 
 type Life {
     """
-    Life object ID
-    """
-    _id: ObjectID!
-    """
     birthDay
     """
-    birthday: Date!
+    birthday: DateTime!
     """
     description
     """
@@ -98,6 +101,10 @@ type Life {
     hobbies
     """
     hobbies: [String!]!
+    """
+    Life object ID
+    """
+    id: ObjectID!
     """
     last name
     """
@@ -149,14 +156,7 @@ type Mutation {
     """
     Create a new life
     """
-    createLife(
-        birthday: Date!
-        description: String!
-        firstName: String!
-        hobbies: [String!]!
-        lastName: String!
-        title: String!
-    ): Life!
+    createLife(createLifeInput: CreateLifeInput): Life!
     """
     Disable 2FA / Authenticator for the signed user
     """
@@ -237,7 +237,7 @@ type Query {
     """
     Fetch a life document
     """
-    getLife(_id: ObjectID!): Life
+    getLife(id: ObjectID!): Life
     """
     Fetch WebAuthn security keys for a username
     """
@@ -245,7 +245,7 @@ type Query {
     """
     Fetch a life of lives
     """
-    listLives: [Life]
+    listLives: [Life!]!
     """
     List users
     """

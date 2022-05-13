@@ -2,4 +2,3 @@ scalar ObjectID
 scalar DateTime
 scalar Upload
 scalar JSONObject
-scalar Date

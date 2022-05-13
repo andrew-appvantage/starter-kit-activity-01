@@ -198,7 +198,7 @@ const createWebServer = async (): Promise<WebServerCreation> => {
         bullServerAdapter.setBasePath('/.bull');
         expressServer.use('/.bull', bullServerAdapter.getRouter());
     }
- 
+
     // fallback on the application for all other paths
     expressServer.get('*', (req, res, next) => {
         renderApplication(req, res, next);
