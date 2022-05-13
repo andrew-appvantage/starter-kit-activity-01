@@ -1,0 +1,41 @@
+type Life {
+    """
+    Life object ID
+    """
+    id: ObjectID!
+
+    """
+    first name
+    """
+    firstName: String!
+
+    """
+    last name
+    """
+    lastName: String!
+
+    """
+    full name
+    """
+    fullName: String!
+
+    """
+    birthDay
+    """
+    birthday: DateTime!
+
+    """
+    title
+    """
+    title: String!
+
+    """
+    description
+    """
+    description: String!
+
+    """
+    hobbies
+    """
+    hobbies: [String!]!
+}

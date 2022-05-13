@@ -5,6 +5,16 @@ type Query {
     currentUser: User
 
     """
+    Fetch a life document
+    """
+    getLife(id: ObjectID!): Life
+
+    """
+    Fetch a life of lives
+    """
+    listLives: [Life!]!
+
+    """
     List users
     """
     listUsers(pagination: Pagination!, filter: UserFilteringRule, sort: UserSortingRule): PaginatedUsers!
